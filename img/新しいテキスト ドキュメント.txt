@@ -1,0 +1,6 @@
+axe
+sword
+bigsword
+falx
+hammer
+spear
