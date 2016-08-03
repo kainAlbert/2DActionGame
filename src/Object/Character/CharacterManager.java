@@ -92,4 +92,5 @@ public class CharacterManager {
 	public Character getPlayer(){ return mPlayer; }
 	public List<Character> getEnemyList(){ return mEnemyList; }
 	public int getLevel(){ return mLevel; }
+	public int getDeadBoss(){ return mDeadBoss; }
 }

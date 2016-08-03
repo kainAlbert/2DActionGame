@@ -18,11 +18,15 @@ public class UIManager {
 		Character ground = new UIGround();
 		Character maxHP = new UIMaxHP();
 		Character hp = new UIHP();
+		Character gameclear = new UIGameClear();
+		Character gameover = new UIGameOver();
 
 		// リストに追加
 		mList.add( ground );
 		mList.add( maxHP );
 		mList.add( hp );
+		mList.add( gameclear );
+		mList.add( gameover );
 	}
 
 	// 更新

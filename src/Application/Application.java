@@ -36,6 +36,8 @@ public class Application extends JFrame{
 
 		Application app = new Application();
 
+		boolean isEnd = false;
+
 		while( true ){
 
 			// FPS
@@ -46,6 +48,10 @@ public class Application extends JFrame{
 
 			// 再描画
 			app.repaint();
+
+			if( isEnd ) break;
+
+			if( app.getObj().getCM().getDeadBoss() >= 3 ) isEnd = true;
 		}
 	}
 

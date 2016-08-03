@@ -77,6 +77,8 @@ public class Character {
 
 		// 死亡フラグ
 		mIsDead = mHP <= 0;
+
+		if( mIsDead ) mVelocity = new GSvector2();
 	}
 
 	// 死亡フラグ

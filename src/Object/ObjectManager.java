@@ -1,5 +1,6 @@
 package Object;
 
+import Application.Define;
 import Object.Character.CharacterManager;
 import Object.Effect.EffectManager;
 import Object.Enemy.EnemyFactory;
@@ -40,6 +41,8 @@ public class ObjectManager {
 		mUM.update();
 		mCollision.update();
 		mEM.update();
+
+		if( mCM.getEnemyList().size() >= Define.ENEMY_MAX_NUM ) return;
 
 		for( int i=0; i<mEF.length; i++ ){
 			mEF[i].update();

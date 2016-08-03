@@ -8,7 +8,7 @@ public class InputKey  implements KeyListener{
 	public static boolean mDownKey;
 	public static boolean mLeftKey;
 	public static boolean mRightKey;
-	public static boolean mZKey;
+	public static boolean mSpaceKey;
 
 	// キー情報初期化
 	public static void initialize(){
@@ -17,7 +17,7 @@ public class InputKey  implements KeyListener{
 		mDownKey = false;
 		mLeftKey = false;
 		mRightKey = false;
-		mZKey = false;
+		mSpaceKey = false;
 	}
 
 	//キーが押された瞬間
@@ -42,8 +42,8 @@ public class InputKey  implements KeyListener{
 		case KeyEvent.VK_RIGHT:
 			mRightKey = true;
 			break;
-		case KeyEvent.VK_Z:
-			mZKey = true;
+		case KeyEvent.VK_SPACE:
+			mSpaceKey = true;
 			break;
 		}
 	}
@@ -65,8 +65,8 @@ public class InputKey  implements KeyListener{
 		case KeyEvent.VK_RIGHT:
 			mRightKey = false;
 			break;
-		case KeyEvent.VK_Z:
-			mZKey = false;
+		case KeyEvent.VK_SPACE:
+			mSpaceKey = false;
 			break;
 		}
 	}

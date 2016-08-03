@@ -34,7 +34,7 @@ public class Player extends Character{
 		// 親クラスの更新
 		super.update();
 
-		if( mHP <= 0 ) System.out.println("GAME OVER");
+		if( mIsDead ) return;
 
 		// 移動
 		move();
@@ -90,7 +90,7 @@ public class Player extends Character{
 
 		swing();
 
-		if( !InputKey.mZKey ) return;
+		if( !InputKey.mSpaceKey ) return;
 
 		((Weapon)mWeapon).attack();
 
@@ -144,6 +144,8 @@ public class Player extends Character{
 
 	// ダメージ
 	public void damage( int d ){
+
+		if( mIsDead ) return;
 
 		if( mInvinciblyTimer > 0 ) return;
 
