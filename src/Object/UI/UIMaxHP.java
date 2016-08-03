@@ -4,15 +4,16 @@ import Application.Define;
 import Application.GSvector2;
 import Object.Character.Character;
 
-public class UIGround extends Character{
+public class UIMaxHP extends Character{
 
-	// コンストラクタ
-	public UIGround(){
+	public UIMaxHP(){
+
 		super();
 
-		super.initialize("ground",
-				new GSvector2( 0, Define.GROUND_LINE ),
-				new GSvector2( Define.UI_GROUND_SCALE.x, Define.UI_GROUND_SCALE.y ),
+		super.initialize(
+				"hpmax",
+				new GSvector2( Define.UI_HP_POS.x, Define.UI_HP_POS.y ),
+				new GSvector2( Define.UI_HP_SCALE.x , Define.UI_HP_SCALE.y ),
 				new GSvector2( Define.UI_ALPHA_RESIZE.x, Define.UI_ALPHA_RESIZE.y ),
 				null, 0, 0, 0);
 	}

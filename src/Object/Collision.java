@@ -42,14 +42,34 @@ public class Collision {
 	}
 
 	// プレイヤーと敵の当たり判定
+//	private void collisionPlayerEnemy( Character player, List<Character> enemyList ){
+//
+//		for( int i=0; i<enemyList.size(); i++ ){
+//
+//			Character enemy = enemyList.get(i);
+//			double revision = enemy.getScale().x * 0.8;
+//			GSvector2 pos = new GSvector2( enemy.getPos().x + revision, enemy.getPos().y + revision );
+//			GSvector2 scale = new GSvector2( enemy.getScale().x + revision, enemy.getScale().y + revision );
+//
+//			// 正方形と正方形の当たり判定
+//			// (敵の大きさを少し小さめにしている)
+//			if( !isCollisionSquare( enemy.getPos(), new GSvector2( enemy.getScale().x , enemy.getScale().y  ) , player.getPos(), player.getScale() ) ) continue;
+//
+//			player.damage( enemy.getPower() );
+//			System.out.println("aaa");
+//			return;
+//		}
+//	}
+
+	// プレイヤーと敵の当たり判定
 	private void collisionPlayerEnemy( Character player, List<Character> enemyList ){
 
 		for( int i=0; i<enemyList.size(); i++ ){
 
 			Character enemy = enemyList.get(i);
 
-			// 正方形と正方形の当たり判定
-			if( !isCollisionSquare( enemy.getPos(), enemy.getScale(), player.getPos(), player.getScale() ) ) continue;
+			// 正方形と円の当たり判定
+			if( !isCollisionSquareCircle( player.getPos(), player.getScale(), enemy.getPos(), enemy.getScale().x / 2.1 ) ) continue;
 
 			player.damage( enemy.getPower() );
 			return;
@@ -65,7 +85,7 @@ public class Collision {
 
 			Character enemy = enemyList.get(i);
 
-			if( !isCollisionSquare(enemy.getPos(), enemy.getScale(), pos, range ) ) continue;
+			if( !isCollisionSquare( pos, range, enemy.getPos(), enemy.getScale() ) ) continue;
 
 			enemy.damage( weaponPower );
 		}
@@ -82,7 +102,15 @@ public class Collision {
 					( pos1.y <= pos2.y && pos1.y + scale1.y >= pos2.y ) ||
 					( pos1.y <= pos2.y + scale2.y && pos1.y + scale1.y >= pos2.y + scale2.y );
 
-			return cx && cy;
+			boolean cxy1 =
+					( pos1.x <= pos2.x && pos1.x + scale1.x >= pos2.x + scale2.x ) &&
+					( pos2.y <= pos1.y && pos2.y + scale2.y >= pos1.y + scale1.y );
+
+			boolean cxy2 =
+					( pos2.x <= pos1.x && pos2.x + scale2.x >= pos1.x + scale1.x ) &&
+					( pos1.y <= pos2.y && pos1.y + scale1.y >= pos2.y + scale2.y );
+
+			return ( cx && cy ) || cxy1 || cxy2;
 		}
 
 		// 点と円の判定

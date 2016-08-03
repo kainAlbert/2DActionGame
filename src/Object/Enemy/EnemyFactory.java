@@ -29,6 +29,8 @@ public class EnemyFactory {
 	// 更新
 	public void update(){
 
+		if( mNeedLevel > Application.getObj().getCM().getLevel() ) return;
+
 		mFactoryTime++;
 
 		addNewEnemy();
@@ -39,19 +41,27 @@ public class EnemyFactory {
 
 		if( mFactoryTime < mNextTime )  return;
 
-		// mRnd.nextInt( Define.ENEMY_TYPE_NUM ) + 1
-		mStr = EnemyReader.returnEnemyFactoryStructure( mRnd.nextInt( Define.ENEMY_TYPE_NUM ) + 1 );
-
-		if( mStr == null ) return;
+		// 敵リストに追加
+		addEnemyList( mRnd.nextInt( Define.ENEMY_ID.WOLF.ordinal() ) + 1 );
 
 		mNextTime = mRnd.nextInt( Define.FACTORY_RND_MAX - Define.FACTORY_RND_MIN ) + Define.FACTORY_RND_MIN;
 
-		mFactoryTime = 0;
+		if( Application.getObj().getCM().nowIsBoss() ) mNextTime *= 3;
 
-		int direction = mRnd.nextInt(1) + 1;
+		mFactoryTime = 0;
+	}
+
+	// 敵をリストに追加
+	public void addEnemyList( int id ){
+
+		mStr = EnemyReader.returnEnemyFactoryStructure( id );
+
+		if( mStr == null ) return;
+
+		int direction = mRnd.nextInt(2) + 1;
 		int posx = direction == Define.DIRECTION_LEFT ? -mStr.mScale : Define.WINDOW_X;
 
-		Character e = new Enemy( mStr.mID, mStr.mWaitMax, mStr.mJumpPower, direction );
+		Character e = new Enemy( mStr.mID, mStr.mHP, mStr.mWaitMax, mStr.mJumpPower, direction, mStr.mID >= Define.ENEMY_ID.HAMSTER.ordinal() );
 
 		e.initialize(
 				mStr.mFileName,

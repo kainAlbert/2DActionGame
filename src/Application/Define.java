@@ -8,7 +8,7 @@ public interface Define{
 
 	// プレイヤー関連
 	GSvector2 PLAYER_INIT_POS = new GSvector2( 400, 500 );
-	GSvector2 PLAYER_INIT_SCALE = new GSvector2( 64, 64 );
+	GSvector2 PLAYER_INIT_SCALE = new GSvector2( 65, 65 );
 	GSvector2 PLAYER_INIT_RESIZE = new GSvector2( 64, 64 );
 	GSvector2 PLAYER_INIT_VEL = new GSvector2( 0, 0 );
 	double PLAYER_INIT_SPEED = 5;
@@ -17,6 +17,7 @@ public interface Define{
 	int PLAYER_JUMP_NUM = 3;
 	double PLAYER_JUMP_POWER = 2;
 	int PLAYER_INVINCIBLY_TIME = 30;
+	int NEED_SCORE[] = { 100, 150, 200 };
 
 	// 武器関連
 	GSvector2 WEAPON_LEFT_HAND = new GSvector2( 12, 48 );
@@ -31,13 +32,13 @@ public interface Define{
 
 	// アイテム関連
 	int ITEM_TIMER = 60;
-	int ITEM_RANDOM = 3;
+	int ITEM_RANDOM = 5;
 	GSvector2 ITEM_SCALE = new GSvector2( 64, 64 );
 	GSvector2 ITEM_RESIZE = new GSvector2( 64, 64 );
 	double ITEM_VELOCITY_Y = 1;
 	double ITEM_SPEED = 1;
 	int ITEM_TYPE_NUM = 7;
-	int ITEM_CARE_UP = 50;
+	int ITEM_CARE_UP = 10;
 
 	// 全キャラ関連
 	double GRAVITY = 0.1;
@@ -46,8 +47,10 @@ public interface Define{
 	int DIRECTION_RIGHT = 2;
 
 	// UI関連
+	GSvector2 UI_ALPHA_RESIZE = new GSvector2( 1, 1 );
 	GSvector2 UI_GROUND_SCALE = new GSvector2( WINDOW_X, WINDOW_Y - GROUND_LINE );
-	GSvector2 UI_GROUND_RESIZE = new GSvector2( 1, 1 );
+	GSvector2 UI_HP_SCALE = new GSvector2(  WINDOW_X* 0.8, UI_GROUND_SCALE.y * 0.2 );
+	GSvector2 UI_HP_POS = new GSvector2(  WINDOW_X * 0.1, GROUND_LINE + 10 );
 
 	// 敵関連
 	int ENEMY_POWER = 5;
@@ -55,9 +58,11 @@ public interface Define{
 	int FACTORY_RND_MAX = 300;
 	int ENEMY_JUMP_TIME = 50;
 	int ENEMY_TYPE_NUM = 7;
+	int ENEMY_INVINCIBLY_TIME = 15;
 	enum ENEMY_ID{
 		NONE, PURINE, FROG, DRAGON, WOLF, HAMSTER, SQUIRREL, RABBIT
 	}
+	int[] BOSS_OF_LEVEL = { ENEMY_ID.HAMSTER.ordinal(), ENEMY_ID.SQUIRREL.ordinal(), ENEMY_ID.RABBIT.ordinal() };
 
 
 	// エフェクト関連

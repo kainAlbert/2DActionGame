@@ -32,6 +32,7 @@ public class Character {
 		mRotate = 0;
 		mIsDead = false;
 		mDirection = 0;
+		mHP = 1;
 	}
 
 	// 初期化
@@ -73,6 +74,9 @@ public class Character {
 
 		// 無敵時間更新
 		if( mInvinciblyTimer > 0 ) mInvinciblyTimer--;
+
+		// 死亡フラグ
+		mIsDead = mHP <= 0;
 	}
 
 	// 死亡フラグ

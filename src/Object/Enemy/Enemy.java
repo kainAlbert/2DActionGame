@@ -11,9 +11,11 @@ public class Enemy extends Character{
 	private int mID;
 	private double mJumpPower;
 	private int mJumpTimer;
+	private int mFirstHP;
+	private boolean mIsBoss;
 
 	// コンストラクタ
-	public Enemy( int id, int waitMax, double jumpPower, int direction ){
+	public Enemy( int id,int hp, int waitMax, double jumpPower, int direction, boolean isBoss ){
 
 		super();
 
@@ -22,6 +24,8 @@ public class Enemy extends Character{
 		mID = id;
 		mJumpPower = jumpPower;
 		mJumpTimer = 0;
+		mFirstHP = hp;
+		mIsBoss = isBoss;
 
 		mDirection = direction;
 		mVelocity = new GSvector2();
@@ -63,4 +67,18 @@ public class Enemy extends Character{
 		mVelocity.x = mDirection == Define.DIRECTION_LEFT ? -1 : 1;
 		mVelocity.y = -mJumpPower;
 	}
+
+	// ダメージ
+	public void damage( int d ){
+
+		if( mInvinciblyTimer > 0 ) return;
+
+		super.damage(d);
+
+		mInvinciblyTimer = Define.ENEMY_INVINCIBLY_TIME;
+	}
+
+	// ゲッター
+	public int getFirstHP(){ return mFirstHP; }
+	public boolean getIsBoss(){ return mIsBoss; }
 }

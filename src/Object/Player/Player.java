@@ -1,5 +1,6 @@
 package Object.Player;
 
+import Application.Application;
 import Application.Define;
 import Application.GSvector2;
 import Application.InputKey;
@@ -32,6 +33,8 @@ public class Player extends Character{
 
 		// 親クラスの更新
 		super.update();
+
+		if( mHP <= 0 ) System.out.println("GAME OVER");
 
 		// 移動
 		move();
@@ -90,6 +93,15 @@ public class Player extends Character{
 		if( !InputKey.mZKey ) return;
 
 		((Weapon)mWeapon).attack();
+
+		GSvector2 range = ((Weapon)mWeapon).getRange();
+		GSvector2 pos = new GSvector2( 0, mPos.y + mScale.y / 2 - range.y / 2 );
+
+		if( mDirection == Define.DIRECTION_LEFT ){ pos.x = mPos.x - range.x; }
+		if( mDirection == Define.DIRECTION_RIGHT ){ pos.x = mPos.x + mScale.x; }
+
+		// 敵との当たり判定
+		Application.getObj().getCollision().collisionWeaponEnemy( mWeapon.getPower(), pos, range);
 	}
 
 	// スウィング
@@ -108,6 +120,7 @@ public class Player extends Character{
 		if( id == Define.ITEM_TYPE_NUM -1 ){
 
 			mHP += Define.ITEM_CARE_UP;
+			mHP = Math.min( mHP, Define.PLAYER_INIT_HP );
 			return true;
 		}
 

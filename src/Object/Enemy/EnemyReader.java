@@ -9,7 +9,7 @@ import Application.GSvector2;
 
 public class EnemyReader {
 
-	// 武器構造体を作成して返す
+	// 敵構造体を作成して返す
 	public static EnemyFactoryStructure returnEnemyFactoryStructure( int id ){
 
 		BufferedReader br = null;
