@@ -37,14 +37,17 @@ public class Application extends JFrame{
 		Application app = new Application();
 
 		boolean isEnd = false;
+		boolean isStart = false;
 
 		while( true ){
+
+			if( InputKey.mSpaceKey ){ isStart = true; }
 
 			// FPS
 			setFPS();
 
 			// 更新
-			mObj.update();
+			mObj.update( isStart );
 
 			// 再描画
 			app.repaint();

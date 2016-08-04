@@ -33,7 +33,9 @@ public class ObjectManager {
 	}
 
 	// 更新
-	public void update(){
+	public void update( boolean isStart ){
+
+		if( !isStart ) return;
 
 		// 各インスタンス更新
 		mCM.update();
